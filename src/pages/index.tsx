@@ -4,12 +4,13 @@ import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 
 import io from "socket.io-client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 let socket;
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [input, setInput] = useState("");
   useEffect(() => {
     async function socketInitializer() {
       await fetch("/api/socket");
@@ -18,9 +19,22 @@ export default function Home() {
       socket.on("connect", () => {
         console.log("connected");
       });
+      socket.on("update-input", (msg) => {
+        setInput(msg);
+      });
     }
     socketInitializer();
   }, []);
 
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  const onChangeHandler = (e) => {
+    setInput(e.target.value);
+    socket.emit("input-change", e.target.value);
+  };
+
+  return (
+    <>
+      <h2>chat app</h2>
+      <input type="text" onChange={onChangeHandler} value={input}></input>
+    </>
+  );
 }
