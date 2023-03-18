@@ -49,7 +49,7 @@ export default function Home() {
             <div className="pr-2 flex-1">
               <input
                 type="text"
-                className="w-full bg-primary-focus input input-bordered h-full"
+                className="w-full text-primary-content bg-primary-focus input input-bordered h-full"
               />
             </div>
             <div className="flex flex-col justify-center items-stretch pl-2">
