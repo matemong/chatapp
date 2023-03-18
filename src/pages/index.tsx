@@ -32,9 +32,36 @@ export default function Home() {
   };
 
   return (
-    <>
-      <h2>chat app</h2>
-      <input type="text" onChange={onChangeHandler} value={input}></input>
-    </>
+    <div className="flex flex-col w-full h-screen">
+      <div className="py-4 text-accent-focus bg-primary-content sticky top-0">
+        <h2 className="text-center text-2xl font-semibold">chat app</h2>
+      </div>
+      <div className="flex flex-col flex-1 bg-neutral-content">
+        <div className="flex-1 p-4">
+          
+            <div className="text-sm text-center text-info py-6">
+              No chat messages
+            </div>
+
+        </div>
+        <div className="bg-primary-content p-4 h-20 sticky bottom-0">
+          <div className="flex flex-row flex-1 h-full divide-gray-200 divide-x">
+            <div className="pr-2 flex-1">
+              <input
+                type="text"
+                className="w-full bg-primary-focus input input-bordered h-full"
+              />
+            </div>
+            <div className="flex flex-col justify-center items-stretch pl-2">
+              <button
+                className="btn btn-primary"
+              >
+                send
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
